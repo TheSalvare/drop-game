@@ -109,6 +109,10 @@
         const SCORE_COLOR_WINNER = '#ffd34d';
         const SCORE_GAP = 8;            // gap between name and score
 
+        // Leader vs the rest, once landed
+        const NAME_COLOR_WINNER = '#ffd34d';   // leader's name matches their score
+        const NON_LEADER_OPACITY = 0.4;        // landed players not in the lead fade to this
+
         // =====================================================================
         // ALIGNMENT / TEST HELPERS (leave off for stream)
         // =====================================================================
@@ -579,8 +583,12 @@
                 ctx.drawImage(sprite, p.x - d.w / 2, topY, d.w, d.h);
             }
 
-            // Username above the sprite / balloon
+            // Username above the sprite / balloon. Once landed, the leader's
+            // name + score are yellow; everyone else's fade back.
+            // (Players still falling stay at full strength so chat can follow them.)
+            const isWinner = p.key === winnerKey;
             ctx.save();
+            if (p.landed && !isWinner) ctx.globalAlpha = NON_LEADER_OPACITY;
             ctx.font = NAME_FONT;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'bottom';
@@ -589,12 +597,11 @@
             ctx.strokeStyle = NAME_OUTLINE;
             const nameY = topY - NAME_GAP;
             ctx.strokeText(p.username, p.x, nameY);
-            ctx.fillStyle = NAME_COLOR;
+            ctx.fillStyle = isWinner ? NAME_COLOR_WINNER : NAME_COLOR;
             ctx.fillText(p.username, p.x, nameY);
 
             // Score above the name (lid landings only)
             if (p.landed && p.score !== null) {
-                const isWinner = p.key === winnerKey;
                 ctx.font = isWinner ? SCORE_FONT_WINNER : SCORE_FONT;
                 ctx.lineWidth = 5;
                 ctx.strokeStyle = NAME_OUTLINE;
