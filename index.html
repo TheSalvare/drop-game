@@ -47,7 +47,7 @@
         // =====================================================================
         // LANDING PAD (coffin lid)
         // =====================================================================
-        // landing-pad.png is exported as a full 1920x1080 frame with the coffin
+        // landing-pad.webp is exported as a full 1920x1080 frame with the coffin
         // already in position, so it's drawn at 0,0 full size.
         const PAD_DRAW = { x: 0, y: 0, w: 1920, h: 1080 };
 
@@ -64,24 +64,24 @@
         // =====================================================================
         // ARTWORK — file paths
         // =====================================================================
-        // dropping.png — everyone while falling (plain !drop)
-        // landed.png   — whoever is currently closest to the centre
-        // missed.png   — everyone else once landed (missed the lid, or on the
+        // dropping.webp — everyone while falling (plain !drop)
+        // landed.webp   — whoever is currently closest to the centre
+        // missed.webp   — everyone else once landed (missed the lid, or on the
         //                lid but not the closest)
-        // balloon.png  — floats above and behind an emote while it falls
+        // balloon.webp  — floats above and behind an emote while it falls
         const IMAGES = {
-            pad:      'images/landing-pad.png',
-            dropping: 'images/dropping.png',
-            landed:   'images/landed.png',
-            missed:   'images/missed.png',
-            balloon:  'images/balloon.png',
+            pad:      'images/landing-pad.webp',
+            dropping: 'images/dropping.webp',
+            landed:   'images/landed.webp',
+            missed:   'images/missed.webp',
+            balloon:  'images/balloon.webp',
         };
 
         // Player sprite widths; height follows each PNG's own proportions
         // so nothing gets stretched.
-        const SPRITE_WIDTH = 100;           // dropping.png
-        const LANDED_SPRITE_WIDTH = 150;    // landed.png (closest to centre)
-        const MISSED_SPRITE_WIDTH = 120;    // missed.png
+        const SPRITE_WIDTH = 100;           // dropping.webp
+        const LANDED_SPRITE_WIDTH = 150;    // landed.webp (closest to centre)
+        const MISSED_SPRITE_WIDTH = 120;    // missed.webp
 
         // Emotes (!drop <emote>) are drawn in a square this size — always,
         // falling and landed
@@ -117,7 +117,7 @@
         // ALIGNMENT / TEST HELPERS (leave off for stream)
         // =====================================================================
         const DEBUG_SHOW_HITBOX = false;
-        const ALIGN_PREVIEW_IMAGE = null;   // e.g. 'images/starting-soon.png'
+        const ALIGN_PREVIEW_IMAGE = null;   // e.g. 'images/starting-soon.webp'
         const DEMO_MODE = false;            // browser demo: dark backdrop, controls, autoplay
 
         // =====================================================================
@@ -455,7 +455,7 @@
             }
         }
 
-        // Closest-to-centre lid landing gets landed.png (live — passes along
+        // Closest-to-centre lid landing gets landed.webp (live — passes along
         // if someone lands closer). Ties go to whoever landed first.
         function updateWinner() {
             let best = null;
